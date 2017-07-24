@@ -1,34 +1,38 @@
 package ;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxObject;
 import flixel.FlxG;
 class Player extends FlxSprite
 {
-	private var NORMAL_SPEED=120;
+
+	private var  RUN_SPEED = 140;
+	private var  GRAVITY = 420;
+	private var  JUMP_SPEED = 250;
 
 	public function new()
 	{
 		super(10,FlxG.height-50);
 		makeGraphic(10,10,0xFFFFFFFF);
-		acceleration.y = 200;
-		maxVelocity.y = 2000;
+		acceleration.y = GRAVITY;
+		maxVelocity.y = JUMP_SPEED;
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		super.update(elapsed);
 		velocity.x = 0;
 		if(InputHandler.LEFT() && !InputHandler.RIGHT())
 		{
-			velocity.x = -1 * NORMAL_SPEED;
+			velocity.x = -1 * RUN_SPEED;
 		}
 		if(InputHandler.RIGHT() && !InputHandler.LEFT())
 		{
-			velocity.x = 1 * NORMAL_SPEED;
+			velocity.x = 1 * RUN_SPEED;
 		}
-		if(InputHandler.JUMP())
+		if(InputHandler.JUMP() && isTouching(FlxObject.FLOOR))
 		{
-			velocity.y = -100000;
+			velocity.y = -JUMP_SPEED;
 		}
+		super.update(elapsed);
 	}
 }
