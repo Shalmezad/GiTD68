@@ -13,7 +13,8 @@ class Player extends FlxSprite
 	public function new()
 	{
 		super(10,FlxG.height-50);
-		makeGraphic(10,10,0xFFFFFFFF);
+		//makeGraphic(10,10,0xFFFFFFFF);
+		loadGraphic("assets/images/player.png");
 		acceleration.y = GRAVITY;
 		maxVelocity.y = JUMP_SPEED;
 	}
