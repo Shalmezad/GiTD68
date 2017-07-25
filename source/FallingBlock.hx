@@ -7,7 +7,7 @@ class FallingBlock extends FlxSprite
 	private static var rand:FlxRandom = new FlxRandom();
 	public function new()
 	{
-		super(Math.random() * FlxG.width, -40);
+		super((Math.random() * (FlxG.width-20))+10, -40);
 		makeGraphic(40,20,0xFFBBBBBB);
 		velocity.y = 60;
 		immovable = true;
@@ -25,7 +25,7 @@ class FallingBlock extends FlxSprite
 
 	override public function revive():Void
 	{
-		x = Math.random() * FlxG.width;
+		x = (Math.random() * (FlxG.width-20))+10;
 		y = -40;
 		// Pick a graphic:
 		loadGraphic(rand.getObject([
